@@ -23,19 +23,26 @@ document.addEventListener('submit', function (event) {
   }
 
   form.dataset.wgcSubmitting = '1';
+  var submitter = event.submitter || document.activeElement;
+  if (!submitter || !form.contains(submitter) || !submitter.matches('button, input[type="submit"]')) {
+    submitter = form.querySelector('button[type="submit"], input[type="submit"]');
+  }
+
   window.setTimeout(function () {
     var buttons = form.querySelectorAll('button, input[type="submit"]');
     buttons.forEach(function (button) {
       if (button.disabled) {
         return;
       }
-      button.disabled = true;
-      button.classList.add('is-loading');
-      if (button.tagName === 'BUTTON') {
-        button.textContent = 'Working...';
-      } else {
-        button.value = 'Working...';
+      if (button === submitter) {
+        button.classList.add('is-loading');
+        if (button.tagName === 'BUTTON') {
+          button.textContent = 'Working...';
+        } else {
+          button.value = 'Working...';
+        }
       }
+      button.disabled = true;
     });
   }, 0);
 });

@@ -39,7 +39,7 @@ final class WordPress_Git_Connector
             'wgc-admin-js',
             plugin_dir_url(dirname(__FILE__)) . 'assets/admin.js',
             [],
-            '1.3.0',
+            '1.3.2',
             true
         );
     }
