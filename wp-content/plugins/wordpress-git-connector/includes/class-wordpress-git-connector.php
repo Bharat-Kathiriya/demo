@@ -162,7 +162,7 @@ final class WordPress_Git_Connector
             case 'pull':
                 $result = $this->guard_remote_configuration($settings);
                 if ($result === null) {
-                    $result = $this->run_git('pull --rebase', $settings);
+                    $result = $this->pull_active_branch($settings);
                 }
                 break;
             case 'push':
@@ -1308,6 +1308,32 @@ final class WordPress_Git_Connector
     private function is_ssh_remote(string $remoteUrl): bool
     {
         return (bool) preg_match('/^(git@|ssh:\/\/)/i', $remoteUrl);
+    }
+
+    private function pull_active_branch(array $settings): array
+    {
+        $upstreamCheck = $this->run_git('rev-parse --abbrev-ref --symbolic-full-name @{u}', $settings);
+        if (!empty($upstreamCheck['success'])) {
+            return $this->run_git('pull --rebase', $settings);
+        }
+
+        $branch = $this->get_active_branch_name($settings);
+        if ($branch === '') {
+            return $this->failure(__('Could not detect the active branch for pull.', 'wordpress-git-connector'));
+        }
+
+        $pullResult = $this->run_git(
+            'pull --rebase origin ' . escapeshellarg($branch),
+            $settings,
+            null,
+            __('Pulled remote changes successfully.', 'wordpress-git-connector')
+        );
+
+        if (!empty($pullResult['success'])) {
+            $this->run_git('branch --set-upstream-to=' . escapeshellarg('origin/' . $branch) . ' ' . escapeshellarg($branch), $settings);
+        }
+
+        return $pullResult;
     }
 
     private function push_with_upstream(array $settings): array
