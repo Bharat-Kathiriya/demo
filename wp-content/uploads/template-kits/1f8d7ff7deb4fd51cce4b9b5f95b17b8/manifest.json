@@ -1,0 +1,1473 @@
+{
+    "manifest_version": "1.0.20",
+    "title": "Inner - Interior Design & Architecture Template Kit",
+    "page_builder": "elementor",
+    "kit_version": "1.0.1",
+    "templates": [
+        {
+            "name": "Global Kit Styles",
+            "screenshot": "screenshots\/global-kit-styles.jpg",
+            "source": "templates\/global.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "global-styles",
+                "include_in_zip": "1",
+                "elementor_pro_required": null,
+                "additional_template_information": [
+                    "These are the global theme styles configured through the Elementor Theme Styles area."
+                ]
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Home",
+            "screenshot": "screenshots\/home.jpg",
+            "source": "templates\/home.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/home\/",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-home",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Home 2",
+            "screenshot": "screenshots\/home-2.jpg",
+            "source": "templates\/home-2.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/home-2\/",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-home",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "About Us",
+            "screenshot": "screenshots\/about-us.jpg",
+            "source": "templates\/about-us.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/about-us\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Services",
+            "screenshot": "screenshots\/services.jpg",
+            "source": "templates\/services.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/services\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Projects",
+            "screenshot": "screenshots\/projects.jpg",
+            "source": "templates\/projects.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/projects\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Project Detail",
+            "screenshot": "screenshots\/project-detail.jpg",
+            "source": "templates\/project-detail.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/project-detail\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Our Team",
+            "screenshot": "screenshots\/our-team.jpg",
+            "source": "templates\/our-team.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/our-team\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Pricing",
+            "screenshot": "screenshots\/pricing.jpg",
+            "source": "templates\/pricing.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/pricing\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "FAQ",
+            "screenshot": "screenshots\/faq.jpg",
+            "source": "templates\/faq.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/faq\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Contact",
+            "screenshot": "screenshots\/contact.jpg",
+            "source": "templates\/contact.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/contact\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Contact 2",
+            "screenshot": "screenshots\/contact-2.jpg",
+            "source": "templates\/contact-2.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/contact-2\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Header",
+            "screenshot": "screenshots\/header.jpg",
+            "source": "templates\/header.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/header\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-header",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Header 2",
+            "screenshot": "screenshots\/header-2.jpg",
+            "source": "templates\/header-2.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/header-2\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-header",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Footer",
+            "screenshot": "screenshots\/footer.jpg",
+            "source": "templates\/footer.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/footer\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-footer",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "404 Page",
+            "screenshot": "screenshots\/404-page.jpg",
+            "source": "templates\/404-page.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/inner\/template-kit\/404-page\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        }
+    ],
+    "required_plugins": [
+        {
+            "name": "Contact Form 7",
+            "version": "5.4.2",
+            "file": "contact-form-7\/wp-contact-form-7.php",
+            "author": "Takayuki Miyoshi"
+        },
+        {
+            "name": "ElementsKit Lite",
+            "version": "2.2.4",
+            "file": "elementskit-lite\/elementskit-lite.php",
+            "author": "Wpmet"
+        },
+        {
+            "name": "Essential Addons for Elementor",
+            "version": "4.7.0",
+            "file": "essential-addons-for-elementor-lite\/essential_adons_elementor.php",
+            "author": "WPDeveloper"
+        },
+        {
+            "name": "Elementor",
+            "version": "3.4.4",
+            "file": "elementor\/elementor.php",
+            "author": "Elementor.com"
+        }
+    ],
+    "images": [
+        {
+            "filename": "interior-design-of-a-coffee-shop-cafe-3d-rendering-e1604308316522.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/interior-design-of-a-coffee-shop-cafe-3d-rendering-e1604308316522.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 359190,
+            "dimensions": [
+                1920,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-DN2ZSLJ"
+        },
+        {
+            "filename": "interior-of-modern-design-room-3d-illustration-e1604308263797.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/interior-of-modern-design-room-3d-illustration-e1604308263797.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 316142,
+            "dimensions": [
+                1920,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PFVCEJT"
+        },
+        {
+            "filename": "bedroom-interior-design-3d-rendering-VMKBAEZ.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/11\/bedroom-interior-design-3d-rendering-VMKBAEZ-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/pricing.json",
+                    "name": "Pricing"
+                }
+            ],
+            "filesize": 348571,
+            "dimensions": [
+                1920,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-VMKBAEZ"
+        },
+        {
+            "filename": "interior-of-modern-design-living-room-3d-rendering-3-e1604308705996.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/interior-of-modern-design-living-room-3d-rendering-3-e1604308705996.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 351684,
+            "dimensions": [
+                1920,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PZTGL84"
+        },
+        {
+            "filename": "Background.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Background.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                }
+            ],
+            "filesize": 14824,
+            "dimensions": [
+                1920,
+                1518
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/templatekit.jegtheme.com\/inner\/"
+        },
+        {
+            "filename": "architectural-house-interior-1-e1603435656905.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/architectural-house-interior-1-e1603435656905.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 267736,
+            "dimensions": [
+                1330,
+                1695
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-5DW6T6S"
+        },
+        {
+            "filename": "SS2GGHVR.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/SS2GGHVR.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 136254,
+            "dimensions": [
+                1440,
+                1080
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-SS2GGHVR"
+        },
+        {
+            "filename": "SEGXBSE.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/SEGXBSE-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 125213,
+            "dimensions": [
+                1024,
+                768
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-SEGXBSE"
+        },
+        {
+            "filename": "TSC55D5.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/TSC55D5-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 169544,
+            "dimensions": [
+                1024,
+                768
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-TSC55D5"
+        },
+        {
+            "filename": "39R5PQB.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/39R5PQB-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 63708,
+            "dimensions": [
+                1024,
+                768
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-39R5PQB"
+        },
+        {
+            "filename": "M8E5NJP.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/M8E5NJP-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 79962,
+            "dimensions": [
+                1024,
+                768
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-M8E5NJP"
+        },
+        {
+            "filename": "interior-of-modern-design-living-room-3d-rendering-e1604308696322.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/interior-of-modern-design-living-room-3d-rendering-e1604308696322.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 89454,
+            "dimensions": [
+                1024,
+                576
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PUWA6TP"
+        },
+        {
+            "filename": "3d-rendering-business-meeting-room-on-office-building-e1604307292878.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/3d-rendering-business-meeting-room-on-office-building-600x400.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 196965,
+            "dimensions": [
+                1024,
+                682
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-TSC55D5"
+        },
+        {
+            "filename": "black-wooden-furniture-and-an-industrial-lamp-above-a-coffee-mac-e1604308501463.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/black-wooden-furniture-and-an-industrial-lamp-above-a-coffee-mac-600x400.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/projects.json",
+                    "name": "Projects"
+                }
+            ],
+            "filesize": 205858,
+            "dimensions": [
+                1920,
+                1280
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-39R5PQB"
+        },
+        {
+            "filename": "3d-rendering-loft-and-luxury-hotel-reception-and-cafe-lounge-restaurant-e1604307414821.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/3d-rendering-loft-and-luxury-hotel-reception-and-cafe-lounge-restaurant-600x400.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 157744,
+            "dimensions": [
+                1024,
+                682
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-4EAZL77"
+        },
+        {
+            "filename": "modern-style-interior-design-3d-rendering-2-e1604308294874.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/modern-style-interior-design-3d-rendering-2-e1604308294874.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 84475,
+            "dimensions": [
+                1024,
+                683
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-YPA2SV6"
+        },
+        {
+            "filename": "3d-rendering-loft-and-luxury-hotel-reception-and-vintage-cafe-lounge-restaurant-e1604307374857.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/3d-rendering-loft-and-luxury-hotel-reception-and-vintage-cafe-lounge-restaurant-600x500.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 182574,
+            "dimensions": [
+                1024,
+                854
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-SEGXBSE"
+        },
+        {
+            "filename": "aa.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/aa-600x590.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 162670,
+            "dimensions": [
+                1024,
+                1007
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-N8572T7"
+        },
+        {
+            "filename": "bb.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/bb-600x590.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 161053,
+            "dimensions": [
+                1024,
+                1007
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-5KDLPTH"
+        },
+        {
+            "filename": "Asset-1@2x-1.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Asset-1@2x-1-600x251.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 13504,
+            "dimensions": [
+                680,
+                284
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/icon-RU8F8W"
+        },
+        {
+            "filename": "Asset-2@2x.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Asset-2@2x-600x232.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 9191,
+            "dimensions": [
+                671,
+                259
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/icon-C93HXVA"
+        },
+        {
+            "filename": "Asset-3@2x.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Asset-3@2x-600x189.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 10741,
+            "dimensions": [
+                665,
+                209
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/icon-FQHWBC"
+        },
+        {
+            "filename": "Asset-4@2x.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Asset-4@2x-600x186.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 11387,
+            "dimensions": [
+                671,
+                208
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/icon-CD4SSN"
+        },
+        {
+            "filename": "Asset-5@2x.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Asset-5@2x-600x239.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 14745,
+            "dimensions": [
+                656,
+                261
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/icon-VWL83K"
+        },
+        {
+            "filename": "modern-style-interior-design-3d-rendering-3-e1604306997729.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/modern-style-interior-design-3d-rendering-3-e1604306997729.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 144328,
+            "dimensions": [
+                1024,
+                768
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-ZXRYJDM"
+        },
+        {
+            "filename": "Image-1.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Image-1.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 31858,
+            "dimensions": [
+                160,
+                160
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-M6NJPEF"
+        },
+        {
+            "filename": "Image.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Image.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 17155,
+            "dimensions": [
+                160,
+                160
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-83S5W35"
+        },
+        {
+            "filename": "image-3.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/image-3.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 29754,
+            "dimensions": [
+                160,
+                160
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-Q8JDNBT"
+        },
+        {
+            "filename": "Image-4.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Image-4.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 25367,
+            "dimensions": [
+                160,
+                160
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-YV9ABZR"
+        },
+        {
+            "filename": "Logo-header.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Logo-header.png",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/header.json",
+                    "name": "Header"
+                },
+                {
+                    "source": "templates\/header-2.json",
+                    "name": "Header 2"
+                }
+            ],
+            "filesize": 2545,
+            "dimensions": [
+                448,
+                151
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/templatekit.jegtheme.com\/inner\/"
+        },
+        {
+            "filename": "Logo-footer@.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Logo-footer@.png",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/header.json",
+                    "name": "Header"
+                },
+                {
+                    "source": "templates\/header-2.json",
+                    "name": "Header 2"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 2733,
+            "dimensions": [
+                449,
+                151
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/templatekit.jegtheme.com\/inner\/"
+        },
+        {
+            "filename": "modern-living-room-with-black-leather-sofa-in-front-of-a-wooden-panel-e1604308631691.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/modern-living-room-with-black-leather-sofa-in-front-of-a-wooden-panel-600x335.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 287230,
+            "dimensions": [
+                1920,
+                1070
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-2ENJYN9"
+        },
+        {
+            "filename": "3d-rendering-luxury-and-modern-living-room-with-good-design-leather-sofa-e1604308460479.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/3d-rendering-luxury-and-modern-living-room-with-good-design-leather-sofa-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/project-detail.json",
+                    "name": "Project Detail"
+                }
+            ],
+            "filesize": 338296,
+            "dimensions": [
+                1920,
+                1441
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-W54Q2NS"
+        },
+        {
+            "filename": "Mark-Mcguire@2x.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Mark-Mcguire@2x-600x90.png",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 11846,
+            "dimensions": [
+                696,
+                104
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/rosemary-signature-DZAUVG4"
+        },
+        {
+            "filename": "modern-style-interior-design-3d-rendering-1-e1604308555323.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/modern-style-interior-design-3d-rendering-1-e1604308555323.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/contact.json",
+                    "name": "Contact"
+                },
+                {
+                    "source": "templates\/contact-2.json",
+                    "name": "Contact 2"
+                }
+            ],
+            "filesize": 167572,
+            "dimensions": [
+                1920,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-8G3N9EA"
+        },
+        {
+            "filename": "simple-dining-room-interior-design-e1604308190537.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/simple-dining-room-interior-design-e1604308190537.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 88424,
+            "dimensions": [
+                1024,
+                682
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PKYFM5G"
+        },
+        {
+            "filename": "3d-rendering-business-meeting-room-on-high-rise-office-building-e1604307631677.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/3d-rendering-business-meeting-room-on-high-rise-office-building-600x400.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/projects.json",
+                    "name": "Projects"
+                }
+            ],
+            "filesize": 119668,
+            "dimensions": [
+                1024,
+                682
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-3YWA7WG"
+        },
+        {
+            "filename": "modern-style-interior-design-3d-rendering-e1604308336449.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/modern-style-interior-design-3d-rendering-e1604308336449.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 105605,
+            "dimensions": [
+                1024,
+                768
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-V3JE7LK"
+        },
+        {
+            "filename": "LXZGZNY.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/LXZGZNY-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                }
+            ],
+            "filesize": 93995,
+            "dimensions": [
+                1024,
+                768
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-LXZGZNY"
+        },
+        {
+            "filename": "designed-stairs-e1603859767802.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/designed-stairs-e1603859767802-600x684.jpg",
+            "templates": [
+                {
+                    "source": "templates\/services.json",
+                    "name": "Services"
+                },
+                {
+                    "source": "templates\/pricing.json",
+                    "name": "Pricing"
+                }
+            ],
+            "filesize": 281337,
+            "dimensions": [
+                1329,
+                1515
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-UTEWJ5Y"
+        },
+        {
+            "filename": "minimalist-living-room-e1604308401943.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/minimalist-living-room-600x343.jpg",
+            "templates": [
+                {
+                    "source": "templates\/projects.json",
+                    "name": "Projects"
+                },
+                {
+                    "source": "templates\/project-detail.json",
+                    "name": "Project Detail"
+                }
+            ],
+            "filesize": 263853,
+            "dimensions": [
+                1920,
+                1097
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PCBF47J"
+        },
+        {
+            "filename": "3d-rendering-interior-and-exterior-design-e1604307589570.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/3d-rendering-interior-and-exterior-design-600x400.jpg",
+            "templates": [
+                {
+                    "source": "templates\/projects.json",
+                    "name": "Projects"
+                }
+            ],
+            "filesize": 120672,
+            "dimensions": [
+                1024,
+                682
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-LXZGZNY"
+        },
+        {
+            "filename": "modern-staircase-e1604307542327.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/modern-staircase-600x900.jpg",
+            "templates": [
+                {
+                    "source": "templates\/projects.json",
+                    "name": "Projects"
+                }
+            ],
+            "filesize": 269480,
+            "dimensions": [
+                1024,
+                1536
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-88LJT5G"
+        },
+        {
+            "filename": "travertine-house-kitchen.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/travertine-house-kitchen.jpg",
+            "templates": [
+                {
+                    "source": "templates\/projects.json",
+                    "name": "Projects"
+                }
+            ],
+            "filesize": 382237,
+            "dimensions": [
+                1333,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-P6676H4"
+        },
+        {
+            "filename": "hotel-lobby-e1604307557586.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/hotel-lobby-600x900.jpg",
+            "templates": [
+                {
+                    "source": "templates\/projects.json",
+                    "name": "Projects"
+                }
+            ],
+            "filesize": 311154,
+            "dimensions": [
+                1024,
+                1536
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PS7LB64"
+        },
+        {
+            "filename": "3d-rendering-luxury-and-modern-living-room-with-good-design-leather-sofa-1-e1604308468666.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/3d-rendering-luxury-and-modern-living-room-with-good-design-leather-sofa-1-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/project-detail.json",
+                    "name": "Project Detail"
+                }
+            ],
+            "filesize": 105239,
+            "dimensions": [
+                1024,
+                769
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-S2GGHVR"
+        },
+        {
+            "filename": "3d-rendering-luxury-and-modern-living-room-with-good-design-leather-sofa-2-e1604308477592.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/3d-rendering-luxury-and-modern-living-room-with-good-design-leather-sofa-2-600x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/project-detail.json",
+                    "name": "Project Detail"
+                }
+            ],
+            "filesize": 112827,
+            "dimensions": [
+                1024,
+                769
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-LXTX9BR"
+        },
+        {
+            "filename": "young-creative-team-choosing-color-design-of-new-project-e1604308989363.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/young-creative-team-choosing-color-design-of-new-project-600x403.jpg",
+            "templates": [
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 327001,
+            "dimensions": [
+                1920,
+                1289
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-ZPYQKM3"
+        },
+        {
+            "filename": "Team.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Team-600x590.jpg",
+            "templates": [
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 139947,
+            "dimensions": [
+                1024,
+                1007
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-WSDBFYL"
+        },
+        {
+            "filename": "Team5-1.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Team5-1-600x590.jpg",
+            "templates": [
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 166969,
+            "dimensions": [
+                1024,
+                1007
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-A8E2W8S"
+        },
+        {
+            "filename": "Teammmm.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Teammmm-600x590.jpg",
+            "templates": [
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 162714,
+            "dimensions": [
+                1024,
+                1007
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-YCGUEP2"
+        },
+        {
+            "filename": "Team6.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/Team6-600x590.jpg",
+            "templates": [
+                {
+                    "source": "templates\/our-team.json",
+                    "name": "Our Team"
+                }
+            ],
+            "filesize": 204851,
+            "dimensions": [
+                1024,
+                1007
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-C8C9CP5"
+        },
+        {
+            "filename": "black-minimalist-interior-of-modern-living-room-3d-rendering-e1604308623589.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/black-minimalist-interior-of-modern-living-room-3d-rendering-600x338.jpg",
+            "templates": [
+                {
+                    "source": "templates\/pricing.json",
+                    "name": "Pricing"
+                }
+            ],
+            "filesize": 297412,
+            "dimensions": [
+                1920,
+                1081
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-ANRDY7E"
+        },
+        {
+            "filename": "interior-of-modern-design-room-3d-rendering-e1604308580227.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/interior-of-modern-design-room-3d-rendering-e1604308580227.jpg",
+            "templates": [
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 201451,
+            "dimensions": [
+                1920,
+                1082
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PZB69KH"
+        },
+        {
+            "filename": "stairway-of-a-residential-building-e1604308370373.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/inner\/wp-content\/uploads\/sites\/15\/2020\/10\/stairway-of-a-residential-building-e1604308370373.jpg",
+            "templates": [
+                {
+                    "source": "templates\/404-page.json",
+                    "name": "404 Page"
+                }
+            ],
+            "filesize": 172337,
+            "dimensions": [
+                1024,
+                1365
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-M8E5NJP"
+        }
+    ]
+}
