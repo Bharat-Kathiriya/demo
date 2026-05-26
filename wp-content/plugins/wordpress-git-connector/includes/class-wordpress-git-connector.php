@@ -177,6 +177,15 @@ final class WordPress_Git_Connector
                     $result = $this->push_with_upstream($settings);
                 }
                 break;
+            case 'push_all':
+                $result = $this->guard_remote_configuration($settings);
+                if ($result === null) {
+                    $result = $this->guard_protected_branch_action($settings, 'push');
+                }
+                if ($result === null) {
+                    $result = $this->commit_and_push_all_files($settings);
+                }
+                break;
             case 'status':
                 $result = $this->run_git('status --short --branch', $settings);
                 break;
@@ -1147,6 +1156,56 @@ final class WordPress_Git_Connector
         return $result;
     }
 
+    private function commit_and_push_all_files(array $settings): array
+    {
+        $stageResult = $this->run_git(
+            '-c core.autocrlf=false -c core.safecrlf=false add -A',
+            $settings,
+            null,
+            __('All files staged successfully.', 'wordpress-git-connector')
+        );
+        if (empty($stageResult['success'])) {
+            return $stageResult;
+        }
+
+        $statusResult = $this->run_git('status --short', $settings);
+        if (empty($statusResult['success'])) {
+            return $statusResult;
+        }
+
+        $details = [];
+        $statusOutput = trim((string) $statusResult['output']);
+        if ($statusOutput !== '') {
+            $commitResult = $this->commit_changes($settings, __('Update repository files', 'wordpress-git-connector'));
+            if (empty($commitResult['success'])) {
+                return $commitResult;
+            }
+            $details[] = __('Committed current file changes.', 'wordpress-git-connector');
+            if (!empty($commitResult['output'])) {
+                $details[] = trim((string) $commitResult['output']);
+            }
+        } elseif (!$this->repo_has_commits($settings)) {
+            return $this->failure(__('No files are available to commit before pushing.', 'wordpress-git-connector'));
+        } else {
+            $details[] = __('No new file changes were found. Pushing existing commits.', 'wordpress-git-connector');
+        }
+
+        $pushResult = $this->push_with_upstream($settings);
+        if (empty($pushResult['success'])) {
+            return $pushResult;
+        }
+
+        if (!empty($pushResult['output'])) {
+            $details[] = trim((string) $pushResult['output']);
+        }
+
+        return [
+            'success' => true,
+            'message' => __('All repository files were pushed successfully.', 'wordpress-git-connector'),
+            'output' => implode(PHP_EOL . PHP_EOL, array_filter($details)),
+        ];
+    }
+
     private function get_repo_info(array $settings): array
     {
         $info = [
@@ -1388,7 +1447,7 @@ final class WordPress_Git_Connector
             return $this->failure(__('Configured working directory does not exist.', 'wordpress-git-connector'));
         }
 
-        $env = is_array($_ENV) ? $_ENV : [];
+        $env = $this->get_process_environment();
         $sshCommand = $this->build_ssh_command($settings['ssh_key_path'] ?? '');
         if ($sshCommand !== '') {
             $env['GIT_SSH_COMMAND'] = $sshCommand;
@@ -1430,6 +1489,28 @@ final class WordPress_Git_Connector
             'message' => $successMessage ?: __('Git command completed successfully.', 'wordpress-git-connector'),
             'output' => $output,
         ];
+    }
+
+    private function get_process_environment(): array
+    {
+        $environment = getenv();
+        $environment = is_array($environment) ? $environment : [];
+
+        $defaults = [
+            'SystemRoot' => 'C:\\Windows',
+            'WINDIR' => 'C:\\Windows',
+            'TEMP' => sys_get_temp_dir(),
+            'TMP' => sys_get_temp_dir(),
+            'PATH' => 'C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Windows\\System32;C:\\Windows',
+        ];
+
+        foreach ($defaults as $key => $value) {
+            if (empty($environment[$key])) {
+                $environment[$key] = $value;
+            }
+        }
+
+        return $environment;
     }
 
     private function build_ssh_command(string $sshKeyPath): string
@@ -1549,6 +1630,7 @@ final class WordPress_Git_Connector
             'sync_remote_branches' => __('Imported Remote Branches', 'wordpress-git-connector'),
             'pull' => __('Pulled Remote Changes', 'wordpress-git-connector'),
             'push' => __('Pushed Commits', 'wordpress-git-connector'),
+            'push_all' => __('Committed And Pushed All Files', 'wordpress-git-connector'),
             'status' => __('Refreshed Status', 'wordpress-git-connector'),
             'add_all' => __('Staged All Changes', 'wordpress-git-connector'),
             'commit' => __('Created Commit', 'wordpress-git-connector'),
