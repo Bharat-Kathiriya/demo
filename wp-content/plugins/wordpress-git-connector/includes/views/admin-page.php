@@ -125,15 +125,15 @@
                     <div class="wgc-workflow">
                         <?php $this->render_action_card(
                             __('Repository Setup', 'wordpress-git-connector'),
-                            __('Use these actions to initialize a new local repository, connect an existing one, or verify the SSH remote connection.', 'wordpress-git-connector'),
+                            __('Use these actions to initialize a new local repository, connect an existing one, or verify the remote connection.', 'wordpress-git-connector'),
                             __('Step 1', 'wordpress-git-connector'),
                             function () use ($settings, $uiState) { ?>
                             <?php $this->render_action_button_group([
                                 ['action' => 'initialize_repo', 'label' => __('Initialize Local Repo', 'wordpress-git-connector'), 'confirm' => __('Initialize a Git repository in the configured local path?', 'wordpress-git-connector')],
                                 ['action' => 'connect_repo', 'label' => __('Connect Existing Repo', 'wordpress-git-connector'), 'disabled' => !$uiState['path_exists'], 'disabled_reason' => __('Local path must exist before you can connect it.', 'wordpress-git-connector')],
-                                ['action' => 'clone_repo', 'label' => __('Clone SSH Repo', 'wordpress-git-connector'), 'confirm' => __('Clone the configured SSH repository into the configured local path?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_clone'], 'disabled_reason' => __('Set a valid SSH remote and local path before cloning.', 'wordpress-git-connector')],
+                                ['action' => 'clone_repo', 'label' => __('Clone Remote Repo', 'wordpress-git-connector'), 'confirm' => __('Clone the configured remote repository into the configured local path?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_clone'], 'disabled_reason' => __('Set a remote URL and local path before cloning.', 'wordpress-git-connector')],
                                 ['action' => 'test_connection', 'label' => __('Test Connection', 'wordpress-git-connector')],
-                                ['action' => 'test_remote', 'label' => __('Test Remote SSH', 'wordpress-git-connector'), 'disabled' => !$uiState['has_remote'], 'disabled_reason' => __('Configure an SSH remote URL first.', 'wordpress-git-connector')],
+                                ['action' => 'test_remote', 'label' => __('Test Remote', 'wordpress-git-connector'), 'disabled' => !$uiState['has_remote'], 'disabled_reason' => __('Configure a remote URL first.', 'wordpress-git-connector')],
                             ]); ?>
                             <?php $this->render_remote_update_form($settings['remote_url']); ?>
                         <?php }); ?>
@@ -144,10 +144,10 @@
                             __('Step 2', 'wordpress-git-connector'),
                             function () use ($uiState) { ?>
                             <?php $this->render_action_button_group([
-                                ['action' => 'fetch', 'label' => __('Fetch', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote Git actions require a repo, SSH remote, and readable SSH key.', 'wordpress-git-connector')],
-                                ['action' => 'sync_remote_branches', 'label' => __('Import Remote Branches', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote branch import requires a working SSH remote configuration.', 'wordpress-git-connector')],
-                                ['action' => 'pull', 'label' => __('Pull', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Pull requires a connected repository and working SSH remote.', 'wordpress-git-connector')],
-                                ['action' => 'push', 'label' => __('Push', 'wordpress-git-connector'), 'confirm' => __('Push committed changes to the remote repository now?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Push requires a connected repository and working SSH remote.', 'wordpress-git-connector')],
+                                ['action' => 'fetch', 'label' => __('Fetch', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote Git actions require a connected repo and remote URL. SSH remotes also require a readable SSH key.', 'wordpress-git-connector')],
+                                ['action' => 'sync_remote_branches', 'label' => __('Import Remote Branches', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote branch import requires a working remote configuration.', 'wordpress-git-connector')],
+                                ['action' => 'pull', 'label' => __('Pull', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Pull requires a connected repository and working remote.', 'wordpress-git-connector')],
+                                ['action' => 'push', 'label' => __('Push', 'wordpress-git-connector'), 'confirm' => __('Push committed changes to the remote repository now?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Push requires a connected repository and working remote.', 'wordpress-git-connector')],
                                 ['action' => 'status', 'label' => __('Refresh Status', 'wordpress-git-connector'), 'disabled' => !$uiState['has_repo'], 'disabled_reason' => __('Initialize or connect a repository first.', 'wordpress-git-connector')],
                             ]); ?>
                         <?php }); ?>

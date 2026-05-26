@@ -451,8 +451,11 @@ final class WordPress_Git_Connector
         $repoPath = trim((string) ($settings['local_path'] ?? ''));
         $pathExists = $repoPath !== '' && is_dir($repoPath);
         $hasRepo = $pathExists && is_dir($repoPath . DIRECTORY_SEPARATOR . '.git');
-        $hasRemote = trim((string) ($repoInfo['remote_url'] ?: $settings['remote_url'])) !== '';
+        $remoteUrl = trim((string) ($repoInfo['remote_url'] ?: $settings['remote_url']));
+        $hasRemote = $remoteUrl !== '';
+        $usesSshRemote = $this->is_ssh_remote($remoteUrl);
         $hasSshKey = trim((string) ($settings['ssh_key_path'] ?? '')) !== '' && file_exists((string) $settings['ssh_key_path']);
+        $hasRemoteAuth = $hasRemote && (!$usesSshRemote || $hasSshKey);
         $hasBranches = !empty($repoInfo['branches']);
         $hasMultipleBranches = count($repoInfo['branches']) > 1;
         $deletableBranches = array_values(array_filter($repoInfo['branches'], function (string $branch) use ($repoInfo): bool {
@@ -464,9 +467,9 @@ final class WordPress_Git_Connector
             $warnings[] = __('No Git repository is connected yet. Initialize or connect a repository before using Git actions.', 'wordpress-git-connector');
         }
         if (!$hasRemote) {
-            $warnings[] = __('Remote SSH URL is missing. Push, pull, fetch, and remote branch import will stay disabled until it is configured.', 'wordpress-git-connector');
+            $warnings[] = __('Remote URL is missing. Push, pull, fetch, and remote branch import will stay disabled until it is configured.', 'wordpress-git-connector');
         }
-        if ($hasRemote && !$hasSshKey) {
+        if ($usesSshRemote && !$hasSshKey) {
             $warnings[] = __('SSH key file is missing or unreadable. Remote Git actions need a valid private key.', 'wordpress-git-connector');
         }
         if (!empty($repoInfo['active_branch']) && $repoInfo['active_branch'] === ($settings['default_branch'] ?? 'main') && ($settings['allow_direct_main_changes'] ?? '0') !== '1') {
@@ -477,8 +480,9 @@ final class WordPress_Git_Connector
             'path_exists' => $pathExists,
             'has_repo' => $hasRepo,
             'has_remote' => $hasRemote,
+            'uses_ssh_remote' => $usesSshRemote,
             'has_ssh_key' => $hasSshKey,
-            'can_run_remote' => $hasRepo && $hasRemote && $hasSshKey,
+            'can_run_remote' => $hasRepo && $hasRemoteAuth,
             'can_clone' => $repoPath !== '' && trim((string) ($settings['remote_url'] ?? '')) !== '',
             'has_branches' => $hasBranches,
             'has_multiple_branches' => $hasMultipleBranches,
@@ -641,11 +645,15 @@ final class WordPress_Git_Connector
         $checks[] = $this->make_check('Local path exists', $repoPath !== '' && is_dir($repoPath), $repoPath !== '' ? $repoPath : __('Local path not configured.', 'wordpress-git-connector'));
         $checks[] = $this->make_check('Local path writable', $repoPath !== '' && is_dir($repoPath) && is_writable($repoPath), $repoPath !== '' ? __('WordPress can write to the repository directory.', 'wordpress-git-connector') : __('Local path not configured.', 'wordpress-git-connector'));
         $checks[] = $this->make_check('Git repository detected', $repoPath !== '' && is_dir($repoPath . DIRECTORY_SEPARATOR . '.git'), $repoPath !== '' ? __('The .git directory is ' . (is_dir($repoPath . DIRECTORY_SEPARATOR . '.git') ? 'present.' : 'missing.'), 'wordpress-git-connector') : __('Local path not configured.', 'wordpress-git-connector'));
-        $checks[] = $this->make_check('SSH remote configured', $remoteUrl !== '' && $this->is_ssh_remote($remoteUrl), $remoteUrl !== '' ? $remoteUrl : __('Remote URL not configured.', 'wordpress-git-connector'));
-        $checks[] = $this->make_check('SSH key exists', $sshKey !== '' && file_exists($sshKey), $sshKey !== '' ? $sshKey : __('SSH key path not configured.', 'wordpress-git-connector'));
-        $checks[] = $this->make_check('SSH key readable', $sshKey !== '' && is_readable($sshKey), $sshKey !== '' ? __('WordPress can read the SSH key file.', 'wordpress-git-connector') : __('SSH key path not configured.', 'wordpress-git-connector'));
+        $checks[] = $this->make_check('Remote URL configured', $remoteUrl !== '', $remoteUrl !== '' ? $remoteUrl : __('Remote URL not configured.', 'wordpress-git-connector'));
+        if ($this->is_ssh_remote($remoteUrl)) {
+            $checks[] = $this->make_check('SSH key exists', $sshKey !== '' && file_exists($sshKey), $sshKey !== '' ? $sshKey : __('SSH key path not configured.', 'wordpress-git-connector'));
+            $checks[] = $this->make_check('SSH key readable', $sshKey !== '' && is_readable($sshKey), $sshKey !== '' ? __('WordPress can read the SSH key file.', 'wordpress-git-connector') : __('SSH key path not configured.', 'wordpress-git-connector'));
+        } elseif ($remoteUrl !== '') {
+            $checks[] = $this->make_check('Remote authentication', true, __('HTTPS remote configured. Git credential manager or a token will handle authentication.', 'wordpress-git-connector'));
+        }
 
-        if ($withHandshake && $sshBinary !== '' && $sshKey !== '' && file_exists($sshKey)) {
+        if ($withHandshake && $this->is_ssh_remote($remoteUrl) && $sshBinary !== '' && $sshKey !== '' && file_exists($sshKey)) {
             $checks[] = $this->run_github_handshake_check($sshBinary, $sshKey);
         }
 
@@ -803,11 +811,7 @@ final class WordPress_Git_Connector
     private function clone_repo(array $settings): array
     {
         if ($settings['remote_url'] === '') {
-            return $this->failure(__('SSH remote URL is required for cloning.', 'wordpress-git-connector'));
-        }
-
-        if (!$this->is_ssh_remote($settings['remote_url'])) {
-            return $this->failure(__('Clone requires an SSH remote URL such as git@github.com:owner/repo.git.', 'wordpress-git-connector'));
+            return $this->failure(__('Remote URL is required for cloning.', 'wordpress-git-connector'));
         }
 
         if ($settings['local_path'] === '') {
@@ -1128,10 +1132,6 @@ final class WordPress_Git_Connector
             return $this->failure(__('Remote URL is required.', 'wordpress-git-connector'));
         }
 
-        if (!$this->is_ssh_remote($remoteUrl)) {
-            return $this->failure(__('Use an SSH remote URL such as git@github.com:owner/repo.git. HTTPS remotes will not use the SSH key path.', 'wordpress-git-connector'));
-        }
-
         $checkRemote = $this->run_git('remote get-url origin', $settings);
         if (!empty($checkRemote['success'])) {
             $result = $this->run_git('remote set-url origin ' . escapeshellarg($remoteUrl), $settings, null, __('Remote URL updated.', 'wordpress-git-connector'));
@@ -1235,15 +1235,11 @@ final class WordPress_Git_Connector
             return $this->failure(__('No remote URL is configured.', 'wordpress-git-connector'));
         }
 
-        if (!$this->is_ssh_remote($remoteUrl)) {
-            return $this->failure(__('The configured remote is HTTPS. Change it to SSH, for example git@github.com:owner/repo.git, because HTTPS will ignore the SSH key path.', 'wordpress-git-connector'), $remoteUrl);
-        }
-
-        if (($settings['ssh_key_path'] ?? '') === '') {
+        if ($this->is_ssh_remote($remoteUrl) && ($settings['ssh_key_path'] ?? '') === '') {
             return $this->failure(__('SSH key path is required for remote Git actions.', 'wordpress-git-connector'));
         }
 
-        if (!file_exists($settings['ssh_key_path'])) {
+        if ($this->is_ssh_remote($remoteUrl) && !file_exists($settings['ssh_key_path'])) {
             return $this->failure(__('The configured SSH key path does not exist on the server.', 'wordpress-git-connector'), $settings['ssh_key_path']);
         }
 
