@@ -191,6 +191,14 @@ final class WordPress_Git_Connector
             case 'add_all':
                 $result = $this->stage_all_changes($settings);
                 break;
+            case 'add_selected':
+                $selectedFiles = isset($_POST['selected_files']) ? (array) wp_unslash($_POST['selected_files']) : [];
+                $result = $this->stage_selected_files($settings, $selectedFiles);
+                break;
+            case 'reset_staged':
+                $selectedFiles = isset($_POST['selected_files']) ? (array) wp_unslash($_POST['selected_files']) : [];
+                $result = $this->reset_staged_files($settings, $selectedFiles);
+                break;
             case 'commit':
                 $message = isset($_POST['commit_message']) ? sanitize_textarea_field(wp_unslash($_POST['commit_message'])) : '';
                 $result = $this->guard_protected_branch_action($settings, 'commit');
@@ -255,6 +263,8 @@ final class WordPress_Git_Connector
         $uiState = $this->get_ui_state($settings, $repoInfo);
         $diagnostics = $this->get_diagnostics_report($settings);
         $gitignoreContents = $this->get_gitignore_contents($settings);
+        $modifiedFiles = $this->get_modified_files($settings);
+        $stagedFiles = $this->get_staged_files($settings);
         $statusFilter = isset($_GET['wgc_log_status']) ? sanitize_key(wp_unslash($_GET['wgc_log_status'])) : 'all';
         $actionFilter = isset($_GET['wgc_log_action']) ? sanitize_key(wp_unslash($_GET['wgc_log_action'])) : 'all';
         $activityLog = $this->get_filtered_activity_log($statusFilter, $actionFilter);
@@ -902,6 +912,168 @@ final class WordPress_Git_Connector
         return $stageResult;
     }
 
+    private function get_modified_files(array $settings): array
+    {
+        $statusResult = $this->run_git('status --short', $settings);
+        if (empty($statusResult['success'])) {
+            return [];
+        }
+
+        $statusOutput = trim((string) $statusResult['output']);
+        if ($statusOutput === '') {
+            return [];
+        }
+
+        $lines = preg_split('/\r\n|\r|\n/', $statusOutput);
+        $files = [];
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '' || strlen($line) < 4) {
+                continue;
+            }
+
+            $status = substr($line, 0, 2);
+            $filePath = ltrim(substr($line, 2));
+
+            if ($filePath === '') {
+                continue;
+            }
+
+            $files[] = [
+                'status' => $status,
+                'path' => $filePath,
+                'status_text' => $this->get_status_text($status),
+            ];
+        }
+
+        return $files;
+    }
+
+    private function get_staged_files(array $settings): array
+    {
+        $statusResult = $this->run_git('diff --cached --name-only', $settings);
+        if (empty($statusResult['success'])) {
+            return [];
+        }
+
+        $statusOutput = trim((string) $statusResult['output']);
+        if ($statusOutput === '') {
+            return [];
+        }
+
+        $lines = preg_split('/\r\n|\r|\n/', $statusOutput);
+        $files = [];
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '') {
+                continue;
+            }
+
+            $files[] = [
+                'status' => 'M ',
+                'path' => $line,
+                'status_text' => __('Modified (staged)', 'wordpress-git-connector'),
+            ];
+        }
+
+        return $files;
+    }
+
+    private function get_status_text(string $status): string
+    {
+        $statusMap = [
+            'M ' => __('Modified', 'wordpress-git-connector'),
+            'A ' => __('Added', 'wordpress-git-connector'),
+            'D ' => __('Deleted', 'wordpress-git-connector'),
+            'R ' => __('Renamed', 'wordpress-git-connector'),
+            '??' => __('Untracked', 'wordpress-git-connector'),
+            ' M' => __('Modified (staged)', 'wordpress-git-connector'),
+            ' D' => __('Deleted (staged)', 'wordpress-git-connector'),
+            'MM' => __('Modified (both)', 'wordpress-git-connector'),
+        ];
+
+        return $statusMap[$status] ?? __('Unknown', 'wordpress-git-connector');
+    }
+
+    private function stage_selected_files(array $settings, array $selectedFiles): array
+    {
+        if (empty($selectedFiles)) {
+            return [
+                'success' => false,
+                'message' => __('No files selected to stage.', 'wordpress-git-connector'),
+                'output' => '',
+            ];
+        }
+
+        $output = '';
+        foreach ($selectedFiles as $filePath) {
+            $filePath = sanitize_text_field($filePath);
+            $stageResult = $this->run_git('add ' . escapeshellarg($filePath), $settings);
+            if (empty($stageResult['success'])) {
+                return $stageResult;
+            }
+            $output .= 'Staged: ' . $filePath . PHP_EOL;
+        }
+
+        $statusResult = $this->run_git('status --short', $settings);
+        if (!empty($statusResult['success'])) {
+            $statusOutput = trim((string) $statusResult['output']);
+            if ($statusOutput !== '') {
+                $output .= PHP_EOL . $this->format_status_summary($statusOutput);
+            }
+        }
+
+        return [
+            'success' => true,
+            'message' => __('Selected files staged successfully.', 'wordpress-git-connector'),
+            'output' => $output,
+        ];
+    }
+
+    private function reset_staged_files(array $settings, array $selectedFiles): array
+    {
+        if (empty($selectedFiles)) {
+            // Reset all staged files
+            $resetResult = $this->run_git('reset', $settings, null, __('All staged files have been unstaged.', 'wordpress-git-connector'));
+        } else {
+            // Reset specific selected files
+            $output = '';
+            foreach ($selectedFiles as $filePath) {
+                $filePath = sanitize_text_field($filePath);
+                $resetResult = $this->run_git('reset ' . escapeshellarg($filePath), $settings);
+                if (empty($resetResult['success'])) {
+                    return $resetResult;
+                }
+                $output .= 'Unstaged: ' . $filePath . PHP_EOL;
+            }
+
+            $resetResult = [
+                'success' => true,
+                'message' => __('Selected files unstaged successfully.', 'wordpress-git-connector'),
+                'output' => $output,
+            ];
+        }
+
+        if (empty($resetResult['success'])) {
+            return $resetResult;
+        }
+
+        // Get updated status
+        $statusResult = $this->run_git('status --short', $settings);
+        if (!empty($statusResult['success'])) {
+            $statusOutput = trim((string) $statusResult['output']);
+            if ($statusOutput !== '') {
+                $resetResult['output'] = ($resetResult['output'] ?? '') . PHP_EOL . $this->format_status_summary($statusOutput);
+            } else {
+                $resetResult['output'] = ($resetResult['output'] ?? '') . PHP_EOL . __('No changes in working directory.', 'wordpress-git-connector');
+            }
+        }
+
+        return $resetResult;
+    }
+
     private function sync_remote_branches(array $settings): array
     {
         $fetchResult = $this->run_git('fetch --all --prune', $settings);
@@ -1396,10 +1568,28 @@ final class WordPress_Git_Connector
             return null;
         }
 
-        return $this->failure(
-            __('Push blocked because there are uncommitted changes. Stage your files if needed, create a commit, and then push again.', 'wordpress-git-connector'),
-            $output
-        );
+        $lines = array_filter(preg_split('/\r\n|\r|\n/', $output), 'strlen');
+        $count = count($lines);
+        if ($count === 1) {
+            $firstLine = $lines[0];
+            $filePath = ltrim(substr($firstLine, 2));
+            $message = sprintf(
+                __('Push blocked because there is one uncommitted change in %s. Stage and commit this file, then push again.', 'wordpress-git-connector'),
+                $filePath
+            );
+        } else {
+            $message = sprintf(
+                _n(
+                    'Push blocked because there is one uncommitted change. Stage your file if needed, create a commit, and then push again.',
+                    'Push blocked because there are %d uncommitted changes. Stage your files if needed, create a commit, and then push again.',
+                    $count,
+                    'wordpress-git-connector'
+                ),
+                $count
+            );
+        }
+
+        return $this->failure($message, $output);
     }
 
     private function get_active_branch_name(array $settings): string
