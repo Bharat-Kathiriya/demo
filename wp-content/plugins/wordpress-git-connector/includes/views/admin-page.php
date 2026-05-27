@@ -37,7 +37,7 @@
                     <div class="wgc-panel wgc-panel-settings">
                         <div class="wgc-panel-head">
                             <h2><?php esc_html_e('Connection Settings', 'wordpress-git-connector'); ?></h2>
-                            <p><?php esc_html_e('Define the local repository path, SSH remote, Git binary, and branch protection rules.', 'wordpress-git-connector'); ?></p>
+                            <p><?php esc_html_e('Configure your repository path, remote connection, and commit author details.', 'wordpress-git-connector'); ?></p>
                         </div>
                     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="wgc-settings-form">
                         <?php wp_nonce_field('wgc_save_settings'); ?>
@@ -54,24 +54,17 @@
                             </tr>
 
                             <tr>
-                                <th scope="row"><label for="wgc_local_path"><?php esc_html_e('Local Repo Path', 'wordpress-git-connector'); ?></label></th>
+                                <th scope="row"><label for="wgc_local_path"><?php esc_html_e('Local Repository Path', 'wordpress-git-connector'); ?></label></th>
                                 <td>
                                     <input name="<?php echo esc_attr(self::OPTION_KEY); ?>[local_path]" id="wgc_local_path" type="text" class="regular-text code" value="<?php echo esc_attr($settings['local_path']); ?>">
-                                    <p class="description"><?php esc_html_e('Absolute path to an existing repository or the final clone directory.', 'wordpress-git-connector'); ?></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><label for="wgc_clone_parent"><?php esc_html_e('Clone Parent Path', 'wordpress-git-connector'); ?></label></th>
-                                <td>
-                                    <input name="<?php echo esc_attr(self::OPTION_KEY); ?>[clone_parent]" id="wgc_clone_parent" type="text" class="regular-text code" value="<?php echo esc_attr($settings['clone_parent']); ?>">
-                                    <p class="description"><?php esc_html_e('Parent folder used when cloning. Leave empty to use the parent of Local Repo Path.', 'wordpress-git-connector'); ?></p>
+                                    <p class="description"><?php esc_html_e('Absolute path to your existing Git repository.', 'wordpress-git-connector'); ?></p>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row"><label for="wgc_remote_url"><?php esc_html_e('SSH Remote URL', 'wordpress-git-connector'); ?></label></th>
                                 <td>
                                     <input name="<?php echo esc_attr(self::OPTION_KEY); ?>[remote_url]" id="wgc_remote_url" type="text" class="regular-text code" value="<?php echo esc_attr($settings['remote_url']); ?>" placeholder="git@github.com:owner/repo.git">
-                                    <p class="description"><?php esc_html_e('SSH remote used for clone, push, pull, and remote updates.', 'wordpress-git-connector'); ?></p>
+                                    <p class="description"><?php esc_html_e('SSH remote URL for push, pull, and syncing with your remote repository.', 'wordpress-git-connector'); ?></p>
                                 </td>
                             </tr>
                             <tr>
@@ -114,18 +107,17 @@
 
                     <div class="wgc-section-head">
                         <h2><?php esc_html_e('Repository Actions', 'wordpress-git-connector'); ?></h2>
-                        <p><?php esc_html_e('Work from top to bottom: set up the repository, sync branches, create commits, then manage merges and cleanup.', 'wordpress-git-connector'); ?></p>
+                        <p><?php esc_html_e('Connect your repository, commit changes, sync with remote, and manage branches.', 'wordpress-git-connector'); ?></p>
                     </div>
                     <div class="wgc-workflow">
                         <?php $this->render_action_card(
                             __('Repository Setup', 'wordpress-git-connector'),
-                            __('Use these actions to initialize a new local repository, connect an existing one, or verify the remote connection.', 'wordpress-git-connector'),
+                            __('Initialize a new repository or connect to an existing one, then test your remote connection.', 'wordpress-git-connector'),
                             __('Step 1', 'wordpress-git-connector'),
                             function () use ($settings, $uiState) { ?>
                             <?php $this->render_action_button_group([
                                 ['action' => 'initialize_repo', 'label' => __('Initialize Local Repo', 'wordpress-git-connector'), 'confirm' => __('Initialize a Git repository in the configured local path?', 'wordpress-git-connector')],
                                 ['action' => 'connect_repo', 'label' => __('Connect Existing Repo', 'wordpress-git-connector'), 'disabled' => !$uiState['path_exists'], 'disabled_reason' => __('Local path must exist before you can connect it.', 'wordpress-git-connector')],
-                                ['action' => 'clone_repo', 'label' => __('Clone Remote Repo', 'wordpress-git-connector'), 'confirm' => __('Clone the configured remote repository into the configured local path?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_clone'], 'disabled_reason' => __('Set a remote URL and local path before cloning.', 'wordpress-git-connector')],
                                 ['action' => 'test_connection', 'label' => __('Test Connection', 'wordpress-git-connector')],
                                 ['action' => 'test_remote', 'label' => __('Test Remote', 'wordpress-git-connector'), 'disabled' => !$uiState['has_remote'], 'disabled_reason' => __('Configure a remote URL first.', 'wordpress-git-connector')],
                             ]); ?>
@@ -134,12 +126,69 @@
 
                         <?php $this->render_action_card(
                             __('Commit Changes', 'wordpress-git-connector'),
-                            __('Stage modified files first, then create a commit with a message describing the changes.', 'wordpress-git-connector'),
+                            __('Select files to stage, then create a commit with a message describing the changes.', 'wordpress-git-connector'),
                             __('Step 2', 'wordpress-git-connector'),
-                            function () use ($uiState) { ?>
+                            function () use ($uiState, $modifiedFiles, $stagedFiles) { ?>
+                            
+                            <?php if (!empty($stagedFiles)) : ?>
+                                <div class="wgc-files-list wgc-staged-files">
+                                    <h4><?php esc_html_e('Staged Files (Ready to Commit)', 'wordpress-git-connector'); ?></h4>
+                                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="wgc-stack-form">
+                                        <?php wp_nonce_field('wgc_git_action'); ?>
+                                        <input type="hidden" name="action" value="wgc_git_action">
+                                        <input type="hidden" name="wgc_action" value="reset_staged">
+                                        <div class="wgc-file-checkboxes">
+                                            <?php foreach ($stagedFiles as $file) : ?>
+                                                <label class="wgc-file-checkbox wgc-staged-checkbox">
+                                                    <input type="checkbox" name="selected_files[]" value="<?php echo esc_attr($file['path']); ?>">
+                                                    <span class="wgc-file-status wgc-staged-status"><?php echo esc_html($file['status']); ?></span>
+                                                    <span class="wgc-file-path"><?php echo esc_html($file['path']); ?></span>
+                                                    <span class="wgc-file-text">(<?php echo esc_html($file['status_text']); ?>)</span>
+                                                </label>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="wgc-inline-actions">
+                                            <button type="submit" class="button button-secondary wgc-secondary-button" <?php disabled(!$uiState['has_repo']); ?>>
+                                                <?php esc_html_e('Unstage Selected Files', 'wordpress-git-connector'); ?>
+                                            </button>
+                                            <button type="submit" class="button button-secondary wgc-secondary-button" name="reset_all" value="1" onclick="document.querySelectorAll('[name=\'selected_files[]\']').forEach(el => el.checked = true);" <?php disabled(!$uiState['has_repo']); ?>>
+                                                <?php esc_html_e('Unstage All', 'wordpress-git-connector'); ?>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($modifiedFiles)) : ?>
+                                <div class="wgc-files-list wgc-modified-files">
+                                    <h4><?php esc_html_e('Modified Files (Unstaged)', 'wordpress-git-connector'); ?></h4>
+                                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="wgc-stack-form">
+                                        <?php wp_nonce_field('wgc_git_action'); ?>
+                                        <input type="hidden" name="action" value="wgc_git_action">
+                                        <input type="hidden" name="wgc_action" value="add_selected">
+                                        <div class="wgc-file-checkboxes">
+                                            <?php foreach ($modifiedFiles as $file) : ?>
+                                                <label class="wgc-file-checkbox">
+                                                    <input type="checkbox" name="selected_files[]" value="<?php echo esc_attr($file['path']); ?>">
+                                                    <span class="wgc-file-status"><?php echo esc_html($file['status']); ?></span>
+                                                    <span class="wgc-file-path"><?php echo esc_html($file['path']); ?></span>
+                                                    <span class="wgc-file-text">(<?php echo esc_html($file['status_text']); ?>)</span>
+                                                </label>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="wgc-inline-actions">
+                                            <button type="submit" class="button button-secondary wgc-secondary-button" <?php disabled(!$uiState['has_repo']); ?>>
+                                                <?php esc_html_e('Stage Selected Files', 'wordpress-git-connector'); ?>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
+                            
                             <?php $this->render_action_button_group([
                                 ['action' => 'add_all', 'label' => __('Stage All Changes', 'wordpress-git-connector'), 'disabled' => !$uiState['has_repo'], 'disabled_reason' => __('Initialize or connect a repository first.', 'wordpress-git-connector')],
                             ]); ?>
+                            
                             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="wgc-stack-form">
                                 <?php wp_nonce_field('wgc_git_action'); ?>
                                 <input type="hidden" name="action" value="wgc_git_action">
@@ -157,13 +206,12 @@
                         <?php }); ?>
 
                         <?php $this->render_action_card(
-                            __('Sync And Remote', 'wordpress-git-connector'),
-                            __('Fetch updates, import remote branches, pull the active branch, or push your local commits to the remote repository.', 'wordpress-git-connector'),
+                            __('Push code to github', 'wordpress-git-connector'),
+                            __('Sync changes between your local repository and remote: fetch updates, pull latest changes, and push your commits.', 'wordpress-git-connector'),
                             __('Step 3', 'wordpress-git-connector'),
                             function () use ($uiState) { ?>
                             <?php $this->render_action_button_group([
                                 ['action' => 'fetch', 'label' => __('Fetch', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote Git actions require a connected repo and remote URL. SSH remotes also require a readable SSH key.', 'wordpress-git-connector')],
-                                ['action' => 'sync_remote_branches', 'label' => __('Import Remote Branches', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote branch import requires a working remote configuration.', 'wordpress-git-connector')],
                                 ['action' => 'pull', 'label' => __('Pull', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Pull requires a connected repository and working remote.', 'wordpress-git-connector')],
                                 ['action' => 'push', 'label' => __('Push', 'wordpress-git-connector'), 'confirm' => __('Push committed changes to the remote repository now?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Push requires a connected repository and working remote.', 'wordpress-git-connector')],
                                 ['action' => 'push_all', 'label' => __('Commit & Push All Files', 'wordpress-git-connector'), 'confirm' => __('Stage all files, create a commit for pending changes, and push the current branch to the remote repository?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Commit and push all files requires a connected repository and working remote.', 'wordpress-git-connector')],
