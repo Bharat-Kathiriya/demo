@@ -73,7 +73,6 @@ final class WordPress_Git_Connector
 
         return [
             'git_binary' => isset($input['git_binary']) ? $this->sanitize_path($input['git_binary']) : '',
-            'repo_mode' => isset($input['repo_mode']) && in_array($input['repo_mode'], ['existing', 'clone'], true) ? $input['repo_mode'] : $defaults['repo_mode'],
             'local_path' => isset($input['local_path']) ? $this->sanitize_path($input['local_path']) : '',
             'clone_parent' => isset($input['clone_parent']) ? $this->sanitize_path($input['clone_parent']) : '',
             'remote_url' => isset($input['remote_url']) ? sanitize_text_field($input['remote_url']) : '',
@@ -367,7 +366,6 @@ final class WordPress_Git_Connector
     {
         return [
             'git_binary' => 'git',
-            'repo_mode' => 'existing',
             'local_path' => '',
             'clone_parent' => '',
             'remote_url' => '',

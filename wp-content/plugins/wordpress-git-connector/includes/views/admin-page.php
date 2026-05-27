@@ -52,13 +52,7 @@
                                     <p class="description"><?php esc_html_e('The plugin tries to detect git.exe automatically. Only enter a full path if detection fails.', 'wordpress-git-connector'); ?></p>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row"><?php esc_html_e('Connection Mode', 'wordpress-git-connector'); ?></th>
-                                <td>
-                                    <label><input type="radio" name="<?php echo esc_attr(self::OPTION_KEY); ?>[repo_mode]" value="existing" <?php checked($settings['repo_mode'], 'existing'); ?>> <?php esc_html_e('Use existing local repo', 'wordpress-git-connector'); ?></label><br>
-                                    <label><input type="radio" name="<?php echo esc_attr(self::OPTION_KEY); ?>[repo_mode]" value="clone" <?php checked($settings['repo_mode'], 'clone'); ?>> <?php esc_html_e('Clone SSH repo to local path', 'wordpress-git-connector'); ?></label>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <th scope="row"><label for="wgc_local_path"><?php esc_html_e('Local Repo Path', 'wordpress-git-connector'); ?></label></th>
                                 <td>
@@ -139,24 +133,9 @@
                         <?php }); ?>
 
                         <?php $this->render_action_card(
-                            __('Sync And Remote', 'wordpress-git-connector'),
-                            __('Fetch updates, import remote branches, pull the active branch, or push your local commits to the remote repository.', 'wordpress-git-connector'),
-                            __('Step 2', 'wordpress-git-connector'),
-                            function () use ($uiState) { ?>
-                            <?php $this->render_action_button_group([
-                                ['action' => 'fetch', 'label' => __('Fetch', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote Git actions require a connected repo and remote URL. SSH remotes also require a readable SSH key.', 'wordpress-git-connector')],
-                                ['action' => 'sync_remote_branches', 'label' => __('Import Remote Branches', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote branch import requires a working remote configuration.', 'wordpress-git-connector')],
-                                ['action' => 'pull', 'label' => __('Pull', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Pull requires a connected repository and working remote.', 'wordpress-git-connector')],
-                                ['action' => 'push', 'label' => __('Push', 'wordpress-git-connector'), 'confirm' => __('Push committed changes to the remote repository now?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Push requires a connected repository and working remote.', 'wordpress-git-connector')],
-                                ['action' => 'push_all', 'label' => __('Commit & Push All Files', 'wordpress-git-connector'), 'confirm' => __('Stage all files, create a commit for pending changes, and push the current branch to the remote repository?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Commit and push all files requires a connected repository and working remote.', 'wordpress-git-connector')],
-                                ['action' => 'status', 'label' => __('Refresh Status', 'wordpress-git-connector'), 'disabled' => !$uiState['has_repo'], 'disabled_reason' => __('Initialize or connect a repository first.', 'wordpress-git-connector')],
-                            ]); ?>
-                        <?php }); ?>
-
-                        <?php $this->render_action_card(
                             __('Commit Changes', 'wordpress-git-connector'),
                             __('Stage modified files first, then create a commit with a message describing the changes.', 'wordpress-git-connector'),
-                            __('Step 3', 'wordpress-git-connector'),
+                            __('Step 2', 'wordpress-git-connector'),
                             function () use ($uiState) { ?>
                             <?php $this->render_action_button_group([
                                 ['action' => 'add_all', 'label' => __('Stage All Changes', 'wordpress-git-connector'), 'disabled' => !$uiState['has_repo'], 'disabled_reason' => __('Initialize or connect a repository first.', 'wordpress-git-connector')],
@@ -175,6 +154,21 @@
                                     'confirm' => __('Create a new commit with the staged changes?', 'wordpress-git-connector'),
                                 ]); ?>
                             </form>
+                        <?php }); ?>
+
+                        <?php $this->render_action_card(
+                            __('Sync And Remote', 'wordpress-git-connector'),
+                            __('Fetch updates, import remote branches, pull the active branch, or push your local commits to the remote repository.', 'wordpress-git-connector'),
+                            __('Step 3', 'wordpress-git-connector'),
+                            function () use ($uiState) { ?>
+                            <?php $this->render_action_button_group([
+                                ['action' => 'fetch', 'label' => __('Fetch', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote Git actions require a connected repo and remote URL. SSH remotes also require a readable SSH key.', 'wordpress-git-connector')],
+                                ['action' => 'sync_remote_branches', 'label' => __('Import Remote Branches', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Remote branch import requires a working remote configuration.', 'wordpress-git-connector')],
+                                ['action' => 'pull', 'label' => __('Pull', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Pull requires a connected repository and working remote.', 'wordpress-git-connector')],
+                                ['action' => 'push', 'label' => __('Push', 'wordpress-git-connector'), 'confirm' => __('Push committed changes to the remote repository now?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Push requires a connected repository and working remote.', 'wordpress-git-connector')],
+                                ['action' => 'push_all', 'label' => __('Commit & Push All Files', 'wordpress-git-connector'), 'confirm' => __('Stage all files, create a commit for pending changes, and push the current branch to the remote repository?', 'wordpress-git-connector'), 'disabled' => !$uiState['can_run_remote'], 'disabled_reason' => __('Commit and push all files requires a connected repository and working remote.', 'wordpress-git-connector')],
+                                ['action' => 'status', 'label' => __('Refresh Status', 'wordpress-git-connector'), 'disabled' => !$uiState['has_repo'], 'disabled_reason' => __('Initialize or connect a repository first.', 'wordpress-git-connector')],
+                            ]); ?>
                         <?php }); ?>
 
                         <?php $this->render_action_card(
@@ -328,10 +322,6 @@
                             <td><?php echo esc_html($uiState['has_remote'] ? __('Remote configured', 'wordpress-git-connector') : __('Remote missing', 'wordpress-git-connector')); ?></td>
                         </tr>
                         <tr>
-                            <td><strong><?php esc_html_e('SSH Health', 'wordpress-git-connector'); ?></strong></td>
-                            <td><?php echo esc_html($uiState['has_ssh_key'] ? __('SSH key ready', 'wordpress-git-connector') : __('SSH key missing or unreadable', 'wordpress-git-connector')); ?></td>
-                        </tr>
-                        <tr>
                             <td><strong><?php esc_html_e('Working Tree', 'wordpress-git-connector'); ?></strong></td>
                             <td><?php echo esc_html($uiState['working_tree_dirty'] ? __('Has local changes', 'wordpress-git-connector') : __('Clean', 'wordpress-git-connector')); ?></td>
                         </tr>
@@ -446,6 +436,7 @@
                         ], admin_url('admin-post.php')), 'wgc_export_activity')); ?>"><?php esc_html_e('Export Logs', 'wordpress-git-connector'); ?></a>
                     </form>
                     <?php if ($activityLog) : ?>
+                        <div class="wgc-activity-scroll">
                         <div class="wgc-activity-list">
                             <?php foreach ($activityLog as $entry) : ?>
                                 <div class="wgc-activity-item">
@@ -468,6 +459,7 @@
                                     <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
+                        </div>
                         </div>
                     <?php else : ?>
                         <p class="description"><?php esc_html_e('No Git activity recorded yet.', 'wordpress-git-connector'); ?></p>

@@ -395,11 +395,22 @@
   gap: 12px;
 }
 
+.wgc-activity-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  padding-bottom: 4px;
+}
+
+.wgc-activity-scroll .wgc-activity-list {
+  min-width: max-content;
+}
+
 .wgc-activity-item {
   border: 1px solid var(--wgc-border);
   border-radius: 14px;
   background: var(--wgc-surface-muted);
   padding: 14px;
+  min-width: 720px;
 }
 
 .wgc-activity-head {
@@ -446,6 +457,11 @@
   margin-bottom: 10px;
   color: var(--wgc-text-soft);
   font-size: 12px;
+}
+
+.wgc-activity-item .wgc-output {
+  white-space: pre;
+  overflow-x: auto;
 }
 
 .wgc-log-filters {
